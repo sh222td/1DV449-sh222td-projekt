@@ -1,0 +1,76 @@
+html, body {
+    height: 100%; margin: 0; padding: 0;
+    background-color: mediumseagreen;
+}
+
+#profileBox img {
+    display: inline;
+    float:left;
+}
+
+#profileBox p {
+    float: left;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 3px;
+    font-size: 20px;
+}
+
+.box {
+    float: left;
+}
+
+#box {
+    margin: auto;
+    text-align: center;
+    border-bottom: solid 1px white;
+    width: 40%;
+}
+#headerText {
+    margin-top: -1%;
+    font-family: 'Helvetica';
+    color: white;
+    font-size: 2em;
+}
+
+#logoIcon {
+    width: 80px;
+}
+
+#authButton {
+    margin-top: 0.5%;
+    margin-left: 0.5%;
+}
+
+#profileBox {
+    float: left;
+    padding: 5px;
+    font-family: 'Helvetica';
+    color: white;
+    margin-left: 0.5%;
+}
+
+#getTweetsButton {
+    margin-left: 0.5%;
+}
+
+li {
+    font-family: 'Helvetica';
+    list-style-type: none;
+    margin-top: 10px;
+    width: 400px;
+    height: 55px;
+    border: solid white 1px;
+    color: white;
+}
+
+#tweetsList {
+    margin-left: -13%;
+    float: left;
+}
+
+#tweetBox {
+    float: left;
+    margin-top: 10%;
+    margin-left: -10%;
+}
