@@ -12,15 +12,16 @@ class App {
             <head>
                 <meta charset = 'UTF-8'>
                 <link rel='stylesheet' type='text/css' href='style/style.css' media='screen'>
-                <link rel='shortcut icon' href='img/favicon.ico' type='image/x-icon'>
-                <link rel='icon' href='img/favicon.ico' type='image/x-icon'>
+                <link rel='shortcut icon' href='img/TwittarrLogoIcon.png' type='image/png'>
             </head>
             <body>" .
                 $this->login->checkLogin()
             ."
             <div id='box'>
-                    <img id='logoIcon' src='img/TwodaIcon.png'>
-                <h1 id='headerText'>Twoda</h1>
+                    <img id='logoIcon' src='img/TwittarrLogo.png'>
+                <h1 id='headerText'>Twittarr!</h1>
+            </div>
+            <div id='translatedBox'>
             </div>
             <script src='script/script.js'></script>
             <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
@@ -28,6 +29,9 @@ class App {
             </body>
         </html>";
 
+        /*echo "<pre>";
+        var_dump($_SESSION['data']->screen_name);
+        echo "</pre>";*/
         return $view;
     }
 

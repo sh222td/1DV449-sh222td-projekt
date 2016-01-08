@@ -1,4 +1,5 @@
 <?php
+// vim: foldmethod=marker
 
 /* Generic exception class
  */

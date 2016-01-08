@@ -7,19 +7,23 @@
  *  license         - GNU General Public License version 2 or later
  */
 
-/*
+/* 
  * CODE BREAKDOWN
  *   PART 1 - DEFINING (loads files,global constants,session enabling)
- *   PART 2 - PROCESS ( check for logout,user session,call back request )
+ *   PART 2 - PROCESS ( check for logout,user session,call back request ) 
  *   PART 3 - FRONT END (display login url or user data)
  *
  */
 
+
+/* 
+ * PART 1 - DEFINING 
+ */
 // Load the library files
-require_once('twitterLogin/twitteroauth/OAuth.php');
-require_once('twitterLogin/twitteroauth/twitteroauth.php');
+require_once('twitterLogin/OAuth.php');
+require_once('twitterLogin/twitteroauth.php');
 require_once('properties/properties.php');
-require_once("app.php");
+require_once('app.php');
 
 class Login {
 
@@ -34,15 +38,22 @@ class Login {
         $this->consumerKey = $this->properties->getConsumerKey();
         $this->consumerSecret = $this->properties->getConsumerSecret();
     }
-    //define('OAUTH_CALLBACK', '//sandrahansson.net/twoda/index.php');
 
     public function checkLogin() {
-        // define the consumer key and secret and callback
+        // define the consumer key and secet and callback
         define('CONSUMER_KEY', $this->consumerKey);
         define('CONSUMER_SECRET', $this->consumerSecret);
         define('OAUTH_CALLBACK', 'http://127.0.0.1/project/index.php');
-
+        // start the session
         session_start();
+
+        /*
+         * PART 2 - PROCESS
+         * 1. check for logout
+         * 2. check for user session
+         * 3. check for callback
+         */
+
         // 1. to handle logout request
         if(isset($_GET['logout'])){
             //unset the session
@@ -92,23 +103,20 @@ class Login {
             }
         }
 
-
-
-
-    /*
-     * PART 3 - FRONT END
-     *  - if userdata available then print data
-     *  - else display the login url
-    */
+        /*
+         * PART 3 - FRONT END
+         *  - if userdata available then print data
+         *  - else display the login url
+        */
 
         if(isset($login_url) && !isset($_SESSION['data'])){
             // echo the login url
-            return "<a href='$login_url'><button id='authButton'>Login with twitter </button></a>";
+            echo "<a href='$login_url'><button>Login with twitter </button></a>";
         }
         else{
             // get the data stored from the session
             $data = $_SESSION['data'];
-            // echo the logout button
+            // echo the name username and photo
             $value = "<a href='?logout=true'><button id='authButton'>Logout</button></a><br>";
             $value .= "<div id='profileBox'><div class='box'><img src='".$data->profile_image_url."'/></div>";
             $value .= "<div class='box'><p>".$data->name."</p><br>";
@@ -118,6 +126,3 @@ class Login {
         }
     }
 }
-
-
-
