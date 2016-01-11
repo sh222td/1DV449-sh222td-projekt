@@ -6,7 +6,7 @@ require_once('login.php');
 require_once('app.php');
 
 
-class GetTweets {
+class SearchTweets {
 
     private $app;
     private $properties;
@@ -28,26 +28,16 @@ class GetTweets {
         $this->app = new App();
 
         $this->app->loggedInView();
-        $this->getTweets();
     }
 
-    public function getTweets() {
-        $this->login->checkLogin();
-        /*if(file_exists('tweets.json') && filemtime('tweets.json') > (time() - 900)){
-            echo file_get_contents('tweets.json');
-        }else{*/
-        //$tweets = $this->twitter->get('https://api.twitter.com/1.1/statuses/user_timeline.json');
+    public function searchTweets($data) {
+        $search = rawurlencode($data['searchTweet']);
+        $tweets = $this->twitter->get('https://api.twitter.com/1.1/search/tweets.json?q='.$search.'');
+        $result = json_encode(['result' => $tweets]);
 
-        $currentUser = $_SESSION['data']->screen_name;
-        $tweets = $this->twitter->get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name='.$currentUser.'');
-
-        $arr = json_encode($tweets);
-        file_put_contents('tweets.json',$arr);
-        echo file_get_contents('tweets.json');
-        /*}*/
+        echo $result;
     }
-
-
 }
 
-new GetTweets();
+$translate = new SearchTweets();
+$translate->searchTweets($_POST);

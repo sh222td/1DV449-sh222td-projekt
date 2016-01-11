@@ -7,19 +7,7 @@
  *  license         - GNU General Public License version 2 or later
  */
 
-/* 
- * CODE BREAKDOWN
- *   PART 1 - DEFINING (loads files,global constants,session enabling)
- *   PART 2 - PROCESS ( check for logout,user session,call back request ) 
- *   PART 3 - FRONT END (display login url or user data)
- *
- */
 
-
-/* 
- * PART 1 - DEFINING 
- */
-// Load the library files
 require_once('twitterLogin/OAuth.php');
 require_once('twitterLogin/twitteroauth.php');
 require_once('properties/properties.php');
@@ -40,7 +28,7 @@ class Login {
     }
 
     public function checkLogin() {
-        // define the consumer key and secet and callback
+        // define the consumer key and secret and callback
         define('CONSUMER_KEY', $this->consumerKey);
         define('CONSUMER_SECRET', $this->consumerSecret);
         define('OAUTH_CALLBACK', 'http://127.0.0.1/project/index.php');
@@ -84,7 +72,7 @@ class Login {
         if(isset($_GET['oauth_token'])){
             // create a new twitter connection object with request token
             $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $_SESSION['request_token'], $_SESSION['request_token_secret']);
-            // get the access token from getAccesToken method
+            // get the access token from getAccessToken method
             $access_token = $connection->getAccessToken($_REQUEST['oauth_verifier']);
             if($access_token){
                 // create another connection object with access token
@@ -95,7 +83,8 @@ class Login {
                 $data = $connection->get('account/verify_credentials',$params);
                 if($data){
                     // store the data in the session
-                    $_SESSION['data']=$data;
+                    $_SESSION['data'] = $data;
+                    var_dump('bahahabh');
                     // redirect to same page to remove url parameters
                     $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
                     header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
@@ -121,7 +110,7 @@ class Login {
             $value .= "<div id='profileBox'><div class='box'><img src='".$data->profile_image_url."'/></div>";
             $value .= "<div class='box'><p>".$data->name."</p><br>";
             $value .= "<p>".$data->screen_name."</p></div></div>";
-            $value .= "<div id='tweetBox'>".$this->app->loggedInView()."</div>";
+            $value .= $this->app->loggedInView();
             return $value;
         }
     }

@@ -4,7 +4,6 @@ class Translate {
     public function pirateTranslate($post) {
         $tweet = rawurlencode($post['tweet']);
         $requestString = "http://isithackday.com/arrpi.php?text=".$tweet;
-        //$requestString = "http://isithackday.com/arrpi.php?text=".$tweet."&format=json";
 
         $result = stripslashes(file_get_contents($requestString));
         $result = json_encode(['pirate' => $result]);

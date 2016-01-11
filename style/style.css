@@ -1,7 +1,7 @@
 html, body {
     height: 100%; margin: 0; padding: 0;
-    background-color: #13132E;
-    /*background-color: white;*/
+/*    background-color: #13132E;*/
+    background-color: darkslategray;
 }
 
 #profileBox img {
@@ -66,6 +66,7 @@ li {
 }
 
 #tweetsList {
+    margin-top: 10%;
     margin-left: -13%;
     float: left;
 }
@@ -77,7 +78,14 @@ li {
 }
 
 .tweetCreator {
-    color: sandybrown;
+    color: #75FFCD;
+}
+
+.tweetDate {
+    color: #BAF9D6;
+    font-size: 13px;
+    margin-top: -8%;
+    float: right;
 }
 
 #tweetBox {
@@ -97,4 +105,18 @@ li {
     left:39%;
     /*margin-left: 8%;
     margin-top: 4%;*/
+}
+
+#searchBox {
+    font-family: 'Helvetica';
+    float: right;
+    color: sandybrown;
+    margin-top: 1%;
+    margin-right: 5%;
+}
+
+#searchResult {
+    float: right;
+    margin-top: 2%;
+    margin-right: 4%;
 }
