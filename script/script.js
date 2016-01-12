@@ -7,6 +7,9 @@ function callAjax() {
         url: "./getTweets.php",
         dataType: "json",
         success: function(data){
+            localStorage.setItem("userTweetsStorage", data);
+            console.log(localStorage.getItem("userTweetsStorage"));
+            //localStorage.removeItem("userTweetsStorage");
             presentUserTweets(data);
         }
     });
@@ -14,7 +17,7 @@ function callAjax() {
 
 /* Uses the data from the ajax call and displays it on the body in the html */
 function presentUserTweets(data) {
-    $(data).each(function() {
+    $(data.result).each(function() {
         var tweet = this;
         var list = document.getElementById('tweetsList');
         var twittarrIcon = document.createElement('img');
@@ -62,8 +65,17 @@ function callTranslate(tweet) {
 function presentTranslation(translatedTweet) {
     var translateBox = document.getElementById('translatedBox');
     var pirateTweet = document.createElement('p');
+    var removeTranslation = document.createElement('button');
+    removeTranslation.className = 'btn';
+    var x = document.createTextNode("x");
+    removeTranslation.appendChild(x);
     pirateTweet.textContent = translatedTweet;
+    translateBox.appendChild(removeTranslation);
     translateBox.appendChild(pirateTweet);
+
+    $('.btn').click(function() {
+        clearTranslation();
+    });
 }
 
 /* Clears the translated result from the body in the html. */
@@ -84,7 +96,8 @@ function search() {
             url: "./searchTweets.php",
             data: form.serialize()
         }).done(function(data) {
-            presentSearchedTweets(JSON.parse(data));
+            localStorage.setItem("searchResultStorage", data);
+            presentSearchedTweets(JSON.parse(localStorage.getItem("searchResultStorage")));
         }).fail(function(data) {
             console.log("Fail");
         });

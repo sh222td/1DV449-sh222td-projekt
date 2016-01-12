@@ -38,8 +38,9 @@ class GetTweets {
 
         $currentUser = $_SESSION['data']->screen_name;
         $result = $this->twitter->get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name='.$currentUser.'');
+        $tweets = json_encode(['result' => $result]);
 
-        $tweets = json_encode($result);
+        //$tweets = json_encode($result);
         echo $tweets;
     }
 }
