@@ -5,7 +5,9 @@ require_once('properties/properties.php');
 require_once('login.php');
 require_once('app.php');
 
-
+/* Class that takes the posted data from the ajax call and makes a call to the
+ * twitter API's search function.
+ */
 class SearchTweets {
 
     private $app;
@@ -32,10 +34,10 @@ class SearchTweets {
 
     public function searchTweets($data) {
         $search = rawurlencode($data['searchTweet']);
-        $tweets = $this->twitter->get('https://api.twitter.com/1.1/search/tweets.json?q='.$search.'');
-        $result = json_encode(['result' => $tweets]);
+        $result = $this->twitter->get('https://api.twitter.com/1.1/search/tweets.json?q='.$search.'');
+        $tweets = json_encode(['result' => $result]);
 
-        echo $result;
+        echo $tweets;
     }
 }
 

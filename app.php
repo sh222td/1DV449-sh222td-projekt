@@ -12,6 +12,8 @@ class App {
             <head>
                 <meta charset = 'UTF-8'>
                 <link rel='stylesheet' type='text/css' href='style/style.css' media='screen'>
+                <link rel='stylesheet' type='text/css' href='offline/themes/offline-theme-default.css' media='screen'>
+                <link rel='stylesheet' type='text/css' href='offline/themes/offline-language-english.css' media='screen'>
                 <link rel='shortcut icon' href='img/TwittarrLogoIcon.png' type='image/png'>
             </head>
             <body>" .
@@ -26,6 +28,8 @@ class App {
             <script src='script/script.js'></script>
             <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
             <script src='//code.jquery.com/jquery-2.1.4.min.js'></script>
+            <script src='offline/offline.js'></script>
+            <script src='offline/offline.min.js'></script>
             </body>
         </html>";
 

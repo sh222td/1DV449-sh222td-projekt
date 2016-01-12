@@ -1,17 +1,19 @@
 'use strict';
 
+/* Makes a call to the php function and sends the returned data to the presentUserTweets function for presentation.*/
 function callAjax() {
     $.ajax({
         type: "GET",
         url: "./getTweets.php",
         dataType: "json",
         success: function(data){
-            getTweets(data);
+            presentUserTweets(data);
         }
     });
 }
 
-function getTweets(data) {
+/* Uses the data from the ajax call and displays it on the body in the html */
+function presentUserTweets(data) {
     $(data).each(function() {
         var tweet = this;
         var list = document.getElementById('tweetsList');
@@ -41,6 +43,7 @@ function getTweets(data) {
 
 }
 
+/* Makes a call to the php function and sends the returned data to the presentTranslation function for presentation.*/
 function callTranslate(tweet) {
     clearTranslation();
     if(tweet && tweet.length){
@@ -55,6 +58,22 @@ function callTranslate(tweet) {
     }
 }
 
+/* Uses the data from the ajax call and displays it on the body in the html */
+function presentTranslation(translatedTweet) {
+    var translateBox = document.getElementById('translatedBox');
+    var pirateTweet = document.createElement('p');
+    pirateTweet.textContent = translatedTweet;
+    translateBox.appendChild(pirateTweet);
+}
+
+/* Clears the translated result from the body in the html. */
+function clearTranslation() {
+    var translateBox = document.getElementById('translatedBox');
+    translateBox.textContent = '';
+}
+
+/* Checks if a form has been posted and makes a call to a php function and sends the returned data to the
+* presentSearchedTweets function for presentation.*/
 function search() {
     $('#searchForm').submit(function(event) {
         clearSearchResult();
@@ -65,27 +84,15 @@ function search() {
             url: "./searchTweets.php",
             data: form.serialize()
         }).done(function(data) {
-            presentTweets(JSON.parse(data));
+            presentSearchedTweets(JSON.parse(data));
         }).fail(function(data) {
             console.log("Fail");
         });
     });
 }
 
-
-function presentTranslation(translatedTweet) {
-    var translateBox = document.getElementById('translatedBox');
-    var pirateTweet = document.createElement('p');
-    pirateTweet.textContent = translatedTweet;
-    translateBox.appendChild(pirateTweet);
-}
-
-function clearTranslation() {
-    var translateBox = document.getElementById('translatedBox');
-    translateBox.textContent = '';
-}
-
-function presentTweets(searchResult) {
+/* Uses the data from the ajax call and displays it on the body in the html */
+function presentSearchedTweets(searchResult) {
     $(searchResult.result.statuses).each(function() {
         var tweet = this;
         var searchResult = document.getElementById('searchResult');
@@ -114,9 +121,10 @@ function presentTweets(searchResult) {
     });
 }
 
+/* Clears the search result from the body in the html. */
 function clearSearchResult() {
-    var translateBox = document.getElementById('searchResult');
-    translateBox.textContent = '';
+    var searchBox = document.getElementById('searchResult');
+    searchBox.textContent = '';
 }
 
 window.onload = function() {

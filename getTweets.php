@@ -5,7 +5,9 @@ require_once('properties/properties.php');
 require_once('login.php');
 require_once('app.php');
 
-
+/* Class that checks which user is online and makes an call to the twitter API's
+ * search function and returns all the user's tweeets.
+ */
 class GetTweets {
 
     private $app;
@@ -33,21 +35,13 @@ class GetTweets {
 
     public function getTweets() {
         $this->login->checkLogin();
-        /*if(file_exists('tweets.json') && filemtime('tweets.json') > (time() - 900)){
-            echo file_get_contents('tweets.json');
-        }else{*/
-        //$tweets = $this->twitter->get('https://api.twitter.com/1.1/statuses/user_timeline.json');
 
         $currentUser = $_SESSION['data']->screen_name;
-        $tweets = $this->twitter->get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name='.$currentUser.'');
+        $result = $this->twitter->get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name='.$currentUser.'');
 
-        $arr = json_encode($tweets);
-        file_put_contents('tweets.json',$arr);
-        echo file_get_contents('tweets.json');
-        /*}*/
+        $tweets = json_encode($result);
+        echo $tweets;
     }
-
-
 }
 
 new GetTweets();
