@@ -12,7 +12,10 @@ Projektet är skrivet i HTML, CSS, JavaScript och PHP. De bibliotek jag använt 
 En liknande sida som finns är http://postlikeapirate.com/ De översätter engelsk text till pirat, man kan sedan posta översättningen som en tweet på sitt konto. Den stora skillnaden på den och min applikation är att min lutar mer åt Twitter hållet där man väljer något och översätta istället för att skriva det direkt själv. Jag gillar dock deras idé med att man postar översättningen som en tweet, att man i min applikation ska kunna posta den igen som pirat. 
 
 <strong>Säkerhet- och prestandaoptimering</strong>
+Säkerhetsoptimering: För inloggingshantering på Twitter använder jag mig utav OAuth, detta gör appliaktionen säkrare då den slipper ha hand om användardata som lösenord och är därför skyddad mot OWASPs A2 (Bruten Autentisiering och Sessionshantering) och A6 (Blottning känslig av data).
 
+Prestandaoptimering: Jag läser in CSS filerna så tidigt som möjligt i koden så att sidan innehåll visas först. Skript filerna laddar jag in längst ner så inläsningen inte tar tid för sidan att laddas in så snabbt som möjligt. 
+Jag har försökt strukturera koden så gott det går med tydlig indentering, kosekvent struktur samt uppdelning av filer. Namngivningen på funktioner, klasser och variabler är beskrivande och jag har valt att hålla kommentarerna korta så de inte tar så stor plats i filen.
 
 <strong>Offline-first</strong>
 Jag valde att använda mig utav Offline.js för att informera användaren ifall internet är nere då det presenterade informationen på ett snyggt sätt och det var smidigt att implementera.
@@ -23,10 +26,16 @@ Cacheningen hanteras via localstorage, användarens tweets vid inloggning och s�
 Den första begränsningen min applikation har är att översättnings-APIet endast fungerar om tweeten är på engelska, skrivs det på ett annat språk så händer inget utan inlägget ser likadant ut som originalet.
 Då applikationen är byggt för två APIer så är den beroende på att de fungerar, lägger ett API ner så tappar den funktion. Om pirat översättnings APIet lägger ner så har dock sidan fortfarande värde i intresse då man kan se sina tweets samt söka efter andra tweets.
 Webbsidan har ett inputfält och i den satte jag ett pattern värde som uteslöt taggar( < och > ) vilket hindrar elaka användaren från att försöka sig på javascriptkod i input fältet.
+
 När man använder sig utav Twitters API så finns det vissa gränser man måste hålla sig under, applikationen kan göra max 350 utloggningskall varje timme, inga siffror min applikation kanske kommer nå men det är bra att vara medveten om ens begränsningar.
+En risk som applikationen besitter är att jag har haft problem med stabiliteten med inloggnin då det i vissa lägen inte fungerar som det ska då jag får en 220 "Your credentials do not allow access to this resource" tillbaka. Ett problem som suttit i och dessutom varit väldigt oklart om hur det ska ha lösts.
 
 <strong>Reflektioner</strong>
+I stora drag är jag nöjd med resultatet, det grundades på en kul idé fungerar bra när inloggningen väl gör som den ska. Problemet som jag nämner i Risker med applikationen angående den ostabila inloggningen har var it frutkansvärt frustrerande då jag har läst på länge om personer med liknande problem men lösningarna har inte fungerat någtot vidare på min applikation. 
 
+Det har varit väldigt lärorikt då man lärt sig att använda OAuth vilket var en ny teknik, samt biblioteket twitteroauth för att implementera det till applikationen. Offline.js var också en ny teknik som jag säkerligen kommer använda mig utav igen i framtiden för dess användarvänlighet. 
+
+Framtiden för den här applikationen kommer innebära att implementera så man kan publicera nya tweets till sitt konto, samt att få inloggningen att fungera då jag gillar hur det fungerar hittils och vill eventuell använda den för skojs skull.
 
 <strong>Betygshöjande</strong>
 
