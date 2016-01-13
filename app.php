@@ -40,6 +40,7 @@ class App {
         $view = "<ul id='tweetsList'>
                 </ul>
                 <div id='searchBox'>
+                    <div id='removeButton'></div>
                     <form id='searchForm' method='post' action='?search'>
                         Search tweets:
                         <input id='inputText' type='text' name='searchTweet' pattern='[a-zA-Z0-9!@#$%^*_|]{0,30}' title='Allowed characters: a-z,#,@,!,^,%,_,$' placeholder=' Hashtag, keyword, etc...'>

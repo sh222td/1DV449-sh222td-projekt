@@ -1,16 +1,14 @@
 'use strict';
 
 /* Makes a call to the php function and sends the returned data to the presentUserTweets function for presentation.*/
-function callAjax() {
+function callUserTweets() {
     $.ajax({
         type: "GET",
         url: "./getTweets.php",
         dataType: "json",
         success: function(data){
-            localStorage.setItem("userTweetsStorage", data);
-            console.log(localStorage.getItem("userTweetsStorage"));
-            //localStorage.removeItem("userTweetsStorage");
-            presentUserTweets(data);
+            localStorage.setItem("userTweetsStorage", JSON.stringify(data));
+            presentUserTweets(JSON.parse(localStorage.getItem("userTweetsStorage")));
         }
     });
 }
@@ -86,7 +84,7 @@ function clearTranslation() {
 
 /* Checks if a form has been posted and makes a call to a php function and sends the returned data to the
 * presentSearchedTweets function for presentation.*/
-function search() {
+function callSearch() {
     $('#searchForm').submit(function(event) {
         clearSearchResult();
         event.preventDefault(); // Prevent the form from submitting via the browser
@@ -106,6 +104,13 @@ function search() {
 
 /* Uses the data from the ajax call and displays it on the body in the html */
 function presentSearchedTweets(searchResult) {
+    var removeButtonDiv = document.getElementById('removeButton');
+    var removeSearchResult = document.createElement('button');
+    removeSearchResult.className = 'removeBtn';
+    var x = document.createTextNode("Remove search result");
+    removeSearchResult.appendChild(x);
+    removeButtonDiv.appendChild(removeSearchResult);
+
     $(searchResult.result.statuses).each(function() {
         var tweet = this;
         var searchResult = document.getElementById('searchResult');
@@ -132,17 +137,28 @@ function presentSearchedTweets(searchResult) {
             callTranslate(tweet.text);
         });
     });
+
+    $(removeSearchResult).click(function() {
+        clearSearchResult();
+    });
 }
 
 /* Clears the search result from the body in the html. */
 function clearSearchResult() {
     var searchBox = document.getElementById('searchResult');
     searchBox.textContent = '';
+
+    var removeSearchResult = document.getElementById('removeButton');
+    removeSearchResult.textContent = '';
+
+    localStorage.removeItem("searchResultStorage");
 }
 
 window.onload = function() {
-    search();
-    callAjax();
+    callSearch();
+    callUserTweets();
+    presentUserTweets(JSON.parse(localStorage.getItem("userTweetsStorage")));
+    presentSearchedTweets(JSON.parse(localStorage.getItem("searchResultStorage")))
 };
 
 

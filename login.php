@@ -1,5 +1,5 @@
 <?php
-/*  TWITTER LOGIN BASIC - Tutorial
+/*  TWITTER LOGIN BASIC
  *  file            - index.php
  *  Developer       - Krishna Teja G S
  *  Website         - http://packetcode.com/apps/twitter-login/
