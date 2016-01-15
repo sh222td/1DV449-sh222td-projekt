@@ -31,7 +31,7 @@ class Login {
         // define the consumer key and secret and callback
         define('CONSUMER_KEY', $this->consumerKey);
         define('CONSUMER_SECRET', $this->consumerSecret);
-        define('OAUTH_CALLBACK', 'http://127.0.0.1/project/index.php');
+        define('OAUTH_CALLBACK', 'http://sandrahansson.net/twittarr/index.php');
         // start the session
         session_start();
 

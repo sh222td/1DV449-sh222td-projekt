@@ -15,6 +15,7 @@ class App {
                 <link rel='stylesheet' type='text/css' href='offline/themes/offline-theme-default.css' media='screen'>
                 <link rel='stylesheet' type='text/css' href='offline/themes/offline-language-english.css' media='screen'>
                 <link rel='shortcut icon' href='img/TwittarrLogoIcon.png' type='image/png'>
+                <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
             </head>
             <body>" .
                 $this->login->checkLogin()
@@ -42,9 +43,9 @@ class App {
                 <div id='searchBox'>
                     <div id='removeButton'></div>
                     <form id='searchForm' method='post' action='?search'>
-                        Search tweets:
+                        Search
+                        <i class='material-icons'>search</i>
                         <input id='inputText' type='text' name='searchTweet' pattern='[a-zA-Z0-9!@#$%^*_|]{0,30}' title='Allowed characters: a-z,#,@,!,^,%,_,$' placeholder=' Hashtag, keyword, etc...'>
-                        <button id='submitSearch'>Search</button>
                     </form>
                 </div>";
 

@@ -1,3 +1,4 @@
+
 html, body {
     height: 100%; margin: 0; padding: 0;
 /*    background-color: #13132E;*/
@@ -59,7 +60,7 @@ li {
     font-family: 'Helvetica';
     list-style-type: none;
     margin-top: 10px;
-    width: 400px;
+    width: 300px;
     height: 100%;
     border-bottom: solid white 1px;
     color: white;
@@ -67,12 +68,12 @@ li {
 
 #tweetsList {
     margin-top: 10%;
-    margin-left: -13%;
+    margin-left: -12%;
     float: left;
 }
 
 .twittarrImage {
-    margin-left: 360px;
+    margin-left: 260px;
     margin-bottom: 3px;
     width: 40px;
 }
@@ -84,7 +85,7 @@ li {
 .tweetDate {
     color: #BAF9D6;
     font-size: 13px;
-    margin-top: -8%;
+    margin-top: -11%;
     float: right;
 }
 
@@ -99,7 +100,7 @@ li {
     color: white;
     font-family: 'Helvetica';
     float: left;
-    width: 400px;
+    width: 300px;
     position:fixed;
     top:40%;
     left:39%;
@@ -110,7 +111,7 @@ li {
 #searchBox {
     font-family: 'Helvetica';
     float: right;
-    color: sandybrown;
+    color: white;
     margin-top: 1%;
     margin-right: 5%;
 }
@@ -119,6 +120,10 @@ li {
     float: right;
     margin-top: 2%;
     margin-right: 4%;
+}
+
+#inputText {
+    border-radius: 8px;
 }
 
 .btn {
@@ -147,8 +152,9 @@ li {
 }
 
 .removeBtn {
+    width: 10%;
     position: absolute;
-    margin-left: 12%;
+    margin-left: 6%;
     float: right;
     margin-top: 8%;
     border: none;
@@ -170,6 +176,10 @@ li {
 }
 .removeBtn:hover {
     background-color:#eb675e;
-    content: "Remove";
+    content: "Remove search result";
+}
+
+#searchIcon {
+
 }
 

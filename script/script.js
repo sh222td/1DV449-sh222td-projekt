@@ -1,5 +1,7 @@
 'use strict';
 
+var status = "false";
+
 /* Makes a call to the php function and sends the returned data to the presentUserTweets function for presentation.*/
 function callUserTweets() {
     $.ajax({
@@ -30,7 +32,8 @@ function presentUserTweets(data) {
         tweetDate.className = 'tweetDate';
         tweetCreator.textContent = tweet.user.name;
         tweetText.textContent = tweet.text;
-        tweetDate.textContent = tweet.created_at;
+        var time = timeSince(tweet.created_at);
+        tweetDate.textContent = time;
         listObject.appendChild(tweetCreator);
         listObject.appendChild(tweetDate);
         listObject.appendChild(tweetText);
@@ -46,17 +49,22 @@ function presentUserTweets(data) {
 
 /* Makes a call to the php function and sends the returned data to the presentTranslation function for presentation.*/
 function callTranslate(tweet) {
-    clearTranslation();
-    if(tweet && tweet.length){
-        $.ajax({
-            type: "POST",
-            url: "./translate.php",
-            data: {tweet: tweet},
-            dataType: "json"
-        }).done(function(data){
-            presentTranslation(data.pirate);
-        });
+    if(status === "false") {
+        status = "true";
+        clearTranslation();
+        if(tweet && tweet.length){
+            $.ajax({
+                type: "POST",
+                url: "./translate.php",
+                data: {tweet: tweet},
+                dataType: "json"
+            }).done(function(data){
+                presentTranslation(data.pirate);
+                status = "false";
+            });
+        }
     }
+
 }
 
 /* Uses the data from the ajax call and displays it on the body in the html */
@@ -125,7 +133,8 @@ function presentSearchedTweets(searchResult) {
         tweetText.className = 'tweetText';
         tweetDate.className = 'tweetDate';
         tweetCreator.textContent = tweet.user.name;
-        tweetDate.textContent = tweet.created_at;
+        var time = timeSince(tweet.created_at);
+        tweetDate.textContent = time;
         tweetText.textContent = tweet.text;
         listObject.appendChild(tweetCreator);
         listObject.appendChild(tweetDate);
@@ -154,11 +163,43 @@ function clearSearchResult() {
     localStorage.removeItem("searchResultStorage");
 }
 
+/* Converts the given date to time since created */
+function timeSince(time) {
+    var date = new Date(time);
+
+    var seconds = Math.floor((new Date() - date) / 1000);
+
+    var interval = Math.floor(seconds / 31536000);
+
+    if (interval > 1) {
+        return interval + " years ago";
+    }
+    interval = Math.floor(seconds / 2592000);
+    if (interval > 1) {
+        return interval + " months ago";
+    }
+    interval = Math.floor(seconds / 86400);
+    if (interval > 1) {
+        return interval + " days ago";
+    }
+    interval = Math.floor(seconds / 3600);
+    if (interval > 1) {
+        return interval + " hours ago";
+    }
+    interval = Math.floor(seconds / 60);
+    if (interval > 1) {
+        return interval + " minutes ago";
+    }
+    return Math.floor(seconds) + " seconds ago";
+}
+
 window.onload = function() {
     callSearch();
     callUserTweets();
     presentUserTweets(JSON.parse(localStorage.getItem("userTweetsStorage")));
-    presentSearchedTweets(JSON.parse(localStorage.getItem("searchResultStorage")))
+    if (localStorage.getItem("searchResultStorage")) {
+        presentSearchedTweets(JSON.parse(localStorage.getItem("searchResultStorage")))
+    }
 };
 
 
