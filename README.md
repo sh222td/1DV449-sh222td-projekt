@@ -4,6 +4,10 @@
 
 ### Twittarr
 
+[Video](https://vimeo.com/151878425)
+
+[Applikationen](http://sandrahansson.net/twittarr/)
+
 <strong>Inledning</strong>
 Grundidén till projektet är att man ska kunna översätta sina egna tweets eller tweets man sökt på till "piratspråk". En användare kan logga in via sitt Twitter konto och bemöts direkt med en lista på sina senaste tweets, sorterade på senaste inlägg. Vid varje inlägg finns en bildikon som indikerar på att man kan välja den valda tweeten för översättning. När användaren klickat på ikonen så kommer det upp en översättning tydligt på sidan, man får även möjligheten att ta bort översättningen om så önskas. Upp till höger finns en sökmotor där man kan söka på hashtagtrådar, nyckelord eller användare i tweets. När användaren sökt presenteras en lista på de tweets som innehåller sökordet, även dessa kan översättas.
 
