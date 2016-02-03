@@ -12,25 +12,29 @@ class App {
             <head>
                 <meta charset = 'UTF-8'>
                 <link rel='stylesheet' type='text/css' href='style/style.css' media='screen'>
-                <link rel='stylesheet' type='text/css' href='offline/themes/offline-theme-default.css' media='screen'>
-                <link rel='stylesheet' type='text/css' href='offline/themes/offline-language-english.css' media='screen'>
+                <link rel='stylesheet' type='text/css' href='style/offline-theme-default.css' media='screen,projection'>
+                <link rel='stylesheet' type='text/css' href='style/offline-language-english.css' media='screen,projection'>
+                <link rel='stylesheet' type='text/css' href='style/offline-language-english-indicator.css' media='screen,projection'>
                 <link rel='shortcut icon' href='img/TwittarrLogoIcon.png' type='image/png'>
                 <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+                <script src='script/script.js'></script>
+                <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+                <script src='//code.jquery.com/jquery-2.1.4.min.js'></script>
+                <script src='script/offline.min.js'></script>
             </head>
-            <body>" .
+            <body>
+            <div id='introText'>Hi and welcome to Twittarr, your very own twitter translator!<br><br><strong>Step 1:</strong> Log in to your twitter account
+            <br><strong>Step 2:</strong> Start translating your own tweets into piratical language!</div>
+            <div id='translatedBox'></div>
+            " .
                 $this->login->checkLogin()
             ."
             <div id='box'>
                     <img id='logoIcon' src='img/TwittarrLogo.png'>
                 <h1 id='headerText'>Twittarr!</h1>
             </div>
-            <div id='translatedBox'></div>
+
             <ul id='searchResult'></ul>
-            <script src='script/script.js'></script>
-            <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
-            <script src='//code.jquery.com/jquery-2.1.4.min.js'></script>
-            <script src='offline/offline.js'></script>
-            <script src='offline/offline.min.js'></script>
             </body>
         </html>";
 

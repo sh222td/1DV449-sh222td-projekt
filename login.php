@@ -44,6 +44,7 @@ class Login {
 
         // 1. to handle logout request
         if(isset($_GET['logout'])){
+            echo "<script type='text/javascript'>clearUserTweets();</script>";
             //unset the session
             session_unset();
             // redirect to same page to remove url paramters
@@ -84,7 +85,6 @@ class Login {
                 if($data){
                     // store the data in the session
                     $_SESSION['data'] = $data;
-                    var_dump('bahahabh');
                     // redirect to same page to remove url parameters
                     $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
                     header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
@@ -100,17 +100,21 @@ class Login {
 
         if(isset($login_url) && !isset($_SESSION['data'])){
             // echo the login url
-            echo "<a href='$login_url'><button>Login with twitter </button></a>";
+            echo "<a href='$login_url'><button id='loginButton' ></button></a>";
         }
         else{
             // get the data stored from the session
             $data = $_SESSION['data'];
+
+            //var_dump($data->screen_name);
             // echo the name username and photo
             $value = "<a href='?logout=true'><button id='authButton'>Logout</button></a><br>";
             $value .= "<div id='profileBox'><div class='box'><img src='".$data->profile_image_url."'/></div>";
             $value .= "<div class='box'><p>".$data->name."</p><br>";
-            $value .= "<p>".$data->screen_name."</p></div></div>";
+            $value .= "<p id='userName'>".$data->screen_name."</p></div></div>";
             $value .= $this->app->loggedInView();
+            $value .= "<script type='text/javascript'>removeInfoText();</script>";
+            $value .= "<script type='text/javascript'>callUserTweets();</script>";
             return $value;
         }
     }

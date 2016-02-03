@@ -2,6 +2,11 @@
 
 var status = "false";
 
+function removeInfoText() {
+    var infoText = document.getElementById('introText');
+    infoText.style.display= 'none';
+}
+
 /* Makes a call to the php function and sends the returned data to the presentUserTweets function for presentation.*/
 function callUserTweets() {
     $.ajax({
@@ -9,8 +14,7 @@ function callUserTweets() {
         url: "./getTweets.php",
         dataType: "json",
         success: function(data){
-            localStorage.setItem("userTweetsStorage", JSON.stringify(data));
-            presentUserTweets(JSON.parse(localStorage.getItem("userTweetsStorage")));
+            presentUserTweets(data);
         }
     });
 }
@@ -163,6 +167,10 @@ function clearSearchResult() {
     localStorage.removeItem("searchResultStorage");
 }
 
+function clearUserTweets() {
+    localStorage.removeItem("userTweetsStorage");
+}
+
 /* Converts the given date to time since created */
 function timeSince(time) {
     var date = new Date(time);
@@ -194,9 +202,13 @@ function timeSince(time) {
 }
 
 window.onload = function() {
+    var run = function(){
+        if (Offline.state === 'up')
+            Offline.check();
+    };
+    setInterval(run, 5000);
+
     callSearch();
-    callUserTweets();
-    presentUserTweets(JSON.parse(localStorage.getItem("userTweetsStorage")));
     if (localStorage.getItem("searchResultStorage")) {
         presentSearchedTweets(JSON.parse(localStorage.getItem("searchResultStorage")))
     }

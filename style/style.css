@@ -18,6 +18,10 @@ html, body {
     font-size: 20px;
 }
 
+#userName {
+    font-size: 17px;
+}
+
 .box {
     float: left;
 }
@@ -40,6 +44,11 @@ html, body {
 }
 
 #authButton {
+    height: 28px;
+    border: none;
+    font-family: 'arial';
+    font-weight: bolder;
+    border-radius: 7px;
     margin-top: 0.5%;
     margin-left: 0.5%;
 }
@@ -60,20 +69,20 @@ li {
     font-family: 'Helvetica';
     list-style-type: none;
     margin-top: 10px;
-    width: 300px;
+    width: 255px;
     height: 100%;
     border-bottom: solid white 1px;
     color: white;
 }
 
 #tweetsList {
-    margin-top: 10%;
-    margin-left: -12%;
+    margin-top: 176px;
+    margin-left: -230px;
     float: left;
 }
 
 .twittarrImage {
-    margin-left: 260px;
+    margin-left: 217px;
     margin-bottom: 3px;
     width: 40px;
 }
@@ -85,7 +94,7 @@ li {
 .tweetDate {
     color: #BAF9D6;
     font-size: 13px;
-    margin-top: -11%;
+    margin-top: -13%;
     float: right;
 }
 
@@ -96,14 +105,15 @@ li {
 }
 
 #translatedBox {
+    background: rgba(171, 171, 171, 0.11);
     text-align: center;
     color: white;
     font-family: 'Helvetica';
     float: left;
     width: 300px;
-    position:fixed;
-    top:40%;
-    left:39%;
+    position: fixed;
+    top: 350px;
+    left: 39%;
     /*margin-left: 8%;
     margin-top: 4%;*/
 }
@@ -118,8 +128,8 @@ li {
 
 #searchResult {
     float: right;
-    margin-top: 2%;
-    margin-right: 4%;
+    margin-top: 28px;
+    margin-right: 31px;
 }
 
 #inputText {
@@ -128,7 +138,8 @@ li {
 
 .btn {
     float: right;
-    margin-top: -18px;
+    margin-top: -10px;
+    margin-right: -10px;
     border: none;
     -moz-box-shadow:inset 0px 39px 0px -24px #e67a73;
     -webkit-box-shadow:inset 0px 39px 0px -24px #e67a73;
@@ -137,12 +148,11 @@ li {
     -moz-border-radius:42px;
     -webkit-border-radius:42px;
     border-radius:42px;
-    display:inline-block;
     cursor:pointer;
     color:#ffffff;
     font-family:Arial;
     font-size:14px;
-    padding:6px 11px;
+    padding:2px 7px;
     text-decoration:none;
     text-shadow:0px 1px 0px #b23e35;
 }
@@ -152,11 +162,11 @@ li {
 }
 
 .removeBtn {
-    width: 10%;
+    width: 192px;
     position: absolute;
-    margin-left: 6%;
+    margin-left: 5%;
     float: right;
-    margin-top: 8%;
+    margin-top: 106px;
     border: none;
     -moz-box-shadow:inset 0px 39px 0px -24px #e67a73;
     -webkit-box-shadow:inset 0px 39px 0px -24px #e67a73;
@@ -179,7 +189,27 @@ li {
     content: "Remove search result";
 }
 
-#searchIcon {
-
+#loginButton {
+    margin: 4px;
+    background-image: url("sign-in-with-twitter-gray.png");
+    width: 158px;
+    height: 28px;
+    border: none;
+    border-radius: 7px;
 }
 
+#introText {
+    padding: 11px;
+    background: rgba(171, 171, 171, 0.11);
+    position: absolute;
+    display: block;
+    font-family: "Arial Narrow", Arial, sans-serif;
+    color: white;
+    text-align: center;
+    width: 100%;
+    font-size: x-large;
+    margin: auto;
+    margin-top: 250px;
+    left: 0;
+    right: 0;
+}
